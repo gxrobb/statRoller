@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>dnd stat roller</title>
+	<title>Stat Roller</title>
 	<link rel="stylesheet" href="">
 
 <script
@@ -22,7 +22,8 @@
 
 		.stat-block-wrapper{
 			display:grid;
-			grid-template:repeat(2, 50px) / repeat(6, 1fr);
+			grid-template-columns: repeat(6, 1fr);
+			grid-template-rows: auto, 50px, auto;
 			grid-gap:10px;
 			padding:20px;
 		}
@@ -37,21 +38,35 @@
 		.strength h2{
 			margin:0;
 		}
+		.stat-block-wrapper .titles{
+			text-align: center;
+			font-weight:700;
+		}
+		.roll-stats{
+			font-size:1rem;
+			padding:20px;
+		}
 	</style>
 </head>
 <body>
 	<header>
-		<h1>Stat Roler</h1>
+		<h1>Stat Roller</h1>
 	</header>
 	<div class="content">
 		<div class="stat-block-wrapper">
+			<div class="titles">Strength</div>
+			<div class="titles">Constitution</div>
+			<div class="titles">Wisdom</div>
+			<div class="titles">Dexterity</div>
+			<div class="titles">Intelligence</div>
+			<div class="titles">Charisma</div>
 			<div class="stat-block strength">0</div>
 			<div class="stat-block constitution">0</div>
 			<div class="stat-block wisdom">0</div>
 			<div class="stat-block dexterity">0</div>
 			<div class="stat-block intelligence">0</div>
 			<div class="stat-block charisma">0</div>
-			<button class="roll-stats">roll stats</button>
+			<button class="roll-stats">Roll For Stats</button>
 		</div>
 	</div>
 	<footer>
