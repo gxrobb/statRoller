@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>dnd stat roller</title>
+	<link rel="stylesheet" href="">
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+	<style>
+		header{
+			text-align:center;
+		}
+		.content{
+			max-width:1150px;
+			margin:0 auto;
+		}
+
+		.stat-block-wrapper{
+			display:grid;
+			grid-template:repeat(2, 50px) / repeat(6, 1fr);
+			grid-gap:10px;
+			padding:20px;
+		}
+		.stat-block{
+			border:solid 1px lightgray;
+			color:black;
+			height:50px;
+			display:flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.strength h2{
+			margin:0;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Stat Roler</h1>
+	</header>
+	<div class="content">
+		<div class="stat-block-wrapper">
+			<div class="stat-block strength">0</div>
+			<div class="stat-block constitution">0</div>
+			<div class="stat-block wisdom">0</div>
+			<div class="stat-block dexterity">0</div>
+			<div class="stat-block intelligence">0</div>
+			<div class="stat-block charisma">0</div>
+			<button class="roll-stats">roll stats</button>
+		</div>
+	</div>
+	<footer>
+		
+	</footer>
+
+	<script>
+		var rollButton = $('.roll-stats');
+		var statBlock = $('.stat-block');
+		var statBlocks = ['strength', 'constitution', 'wisdom', 'dexterity', 'intelligence', 'charisma'];
+
+		function singleStat(){
+
+			var totalRoll = [];
+			for(var x = 0; x < 4; x++){
+				totalRoll[x] = d6Roll();
+			}
+			return  dropLowestRoll(totalRoll);
+		}
+
+		//find the lowest roll and returns it
+		function dropLowestRoll(array){
+			var lowest = array[0];
+			var total = 0;
+			for(var x = 0; x < array.length; x++){
+				if(array[x] < lowest){
+					lowest = array[x];
+				}
+				total += array[x];
+			}
+			return total - lowest;
+		}
+
+		//rolls d6
+		function d6Roll(){
+			return Math.floor(Math.random() * 6) + 1;
+		}
+
+		//generates stat;
+		function rollStat() {
+			for(var x = 0; x < statBlocks.length; x++){
+				$('.'+statBlocks[x]).text(singleStat());
+			}
+		}
+
+		//rolls stats;
+		rollButton.click(function(){
+			rollStat();
+		});
+
+	</script>
+</body>
+</html>
